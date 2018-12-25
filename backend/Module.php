@@ -11,6 +11,15 @@ class Module extends BackendModule
 {
 
     /**
+     * @var integer
+     */
+    public $vendorThumbWidth = 100;
+    /**
+     * @var integer
+     */
+    public $vendorThumbHeight = 100;
+
+    /**
      * @inheritdoc
      */
     public static function database()
