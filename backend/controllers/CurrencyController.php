@@ -3,12 +3,11 @@
 namespace smart\catalog\backend\controllers;
 
 use Yii;
+use yii\web\BadRequestHttpException;
 use smart\base\BackendController;
 use smart\catalog\backend\filters\CurrencyFilter;
 use smart\catalog\backend\forms\CurrencyForm;
 use smart\catalog\models\Currency;
-
-// use yii\web\BadRequestHttpException;
 
 class CurrencyController extends BackendController
 {
@@ -78,23 +77,23 @@ class CurrencyController extends BackendController
         ]);
     }
 
-    // /**
-    //  * Delete
-    //  * @param integer $id
-    //  * @return string
-    //  */
-    // public function actionDelete($id)
-    // {
-    //     $object = Currency::findOne($id);
-    //     if ($object === null) {
-    //         throw new BadRequestHttpException(Yii::t('cms', 'Item not found.'));
-    //     }
+    /**
+     * Delete
+     * @param integer $id
+     * @return string
+     */
+    public function actionDelete($id)
+    {
+        $object = Currency::findOne($id);
+        if ($object === null) {
+            throw new BadRequestHttpException(Yii::t('cms', 'Item not found.'));
+        }
 
-    //     if ($object->delete()) {
-    //         Yii::$app->session->setFlash('success', Yii::t('cms', 'Item deleted successfully.'));
-    //     }
+        if ($object->delete()) {
+            Yii::$app->session->setFlash('success', Yii::t('cms', 'Item deleted successfully.'));
+        }
 
-    //     return $this->redirect(['index']);
-    // }
+        return $this->redirect(['index']);
+    }
 
 }
