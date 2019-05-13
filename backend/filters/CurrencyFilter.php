@@ -9,7 +9,6 @@ use smart\catalog\models\Currency;
 
 class CurrencyFilter extends Currency implements FilterInterface
 {
-
     /**
      * @inheritdoc
      */
@@ -43,5 +42,4 @@ class CurrencyFilter extends Currency implements FilterInterface
         $config['query'] = $query;
         return new ActiveDataProvider($config);
     }
-
 }

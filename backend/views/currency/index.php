@@ -9,6 +9,7 @@ $this->title = $title . ' | ' . Yii::$app->name;
 
 // Breadcrumbs
 $this->params['breadcrumbs'] = [
+    Yii::t('catalog', 'Catalog'),
     $title,
 ];
 
@@ -16,7 +17,7 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <p class="form-buttons">
-    <?= Html::a(Yii::t('cms', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a(Yii::t('cms', 'Add'), ['create'], ['class' => 'btn btn-primary']) ?>
 </p>
 
 <?= GridView::widget([

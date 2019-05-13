@@ -9,7 +9,6 @@ use smart\catalog\models\Vendor;
 
 class VendorFilter extends Vendor implements FilterInterface
 {
-
     /**
      * @inheritdoc
      */
@@ -17,7 +16,7 @@ class VendorFilter extends Vendor implements FilterInterface
     {
         return [
             'title' => Yii::t('catalog', 'Title'),
-            'url' => Yii::t('catalog', 'Url'),
+            'link' => Yii::t('catalog', 'Link URL'),
         ];
     }
 
@@ -42,5 +41,4 @@ class VendorFilter extends Vendor implements FilterInterface
         $config['query'] = $query;
         return new ActiveDataProvider($config);
     }
-
 }

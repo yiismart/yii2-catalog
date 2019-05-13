@@ -11,7 +11,6 @@ use smart\catalog\models\Currency;
 
 class CurrencyController extends BackendController
 {
-
     /**
      * List
      * @return string
@@ -61,7 +60,7 @@ class CurrencyController extends BackendController
         }
 
         $model = new CurrencyForm;
-        $model->assign($object);
+        $model->assignFrom($object);
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
             $model->assignTo($object);
@@ -95,5 +94,4 @@ class CurrencyController extends BackendController
 
         return $this->redirect(['index']);
     }
-
 }

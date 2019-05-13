@@ -48,7 +48,7 @@ class VendorForm extends Form
             'title' => Yii::t('catalog', 'Title'),
             'url' => Yii::t('catalog', 'Friendly URL'),
             'description' => Yii::t('catalog', 'Description'),
-            'link' => Yii::t('catalog', 'Link'),
+            'link' => Yii::t('catalog', 'Link URL'),
             'image' => Yii::t('catalog', 'Image'),
         ];
     }

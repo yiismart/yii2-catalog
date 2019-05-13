@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 // Title
-$title = Yii::t('cms', 'Create');
+$title = Yii::t('cms', 'Add currency');
 $this->title = $title . ' | ' . Yii::$app->name;
 
 // Breadcrumbs

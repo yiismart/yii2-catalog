@@ -26,7 +26,7 @@ class CurrencyForm extends Form
     /**
      * @var integer
      */
-    public $precision = -2;
+    public $precision = 0;
 
     /**
      * @var string
@@ -77,15 +77,15 @@ class CurrencyForm extends Form
     /**
      * @inheritdoc
      */
-    public function assign($object)
+    public function assignFrom($object)
     {
-        $this->name = $object->name;
-        $this->code = $object->code;
-        $this->rate = $object->rate;
-        $this->precision = $object->precision;
-        $this->prefix = $object->prefix;
-        $this->suffix = $object->suffix;
-        $this->default = $object->default == 0 ? '0' : '1';
+        $this->name = self::fromString($object->name);
+        $this->code = self::fromString($object->code);
+        $this->rate = self::fromDouble($object->rate);
+        $this->precision = self::fromInteger($object->precision);
+        $this->prefix = self::fromString($object->prefix);
+        $this->suffix = self::fromString($object->suffix);
+        $this->default = self::fromBoolean($object->default);
     }
 
     /**
@@ -93,13 +93,13 @@ class CurrencyForm extends Form
      */
     public function assignTo($object)
     {
-        $object->name = $this->name;
-        $object->code = $this->code;
-        $object->rate = empty($this->rate) ? null : (float) $this->rate;
-        $object->precision = (integer) $this->precision;
-        $object->prefix = $this->prefix;
-        $object->suffix = $this->suffix;
-        $object->default = $this->default == 1;
+        $object->name = self::toString($this->name);
+        $object->code = self::toString($this->code);
+        $object->rate = self::toDouble($this->rate);
+        $object->precision = self::toInteger($this->precision);
+        $object->prefix = self::toString($this->prefix);
+        $object->suffix = self::toString($this->suffix);
+        $object->default = self::toBoolean($this->default);
     }
 
 }
