@@ -17,7 +17,7 @@ $this->params['breadcrumbs'] = [
 <h1><?= Html::encode($title) ?></h1>
 
 <p class="form-buttons">
-    <?= Html::a(Yii::t('cms', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a(Yii::t('cms', 'Add'), ['create'], ['class' => 'btn btn-primary']) ?>
 </p>
 
 <?= GridView::widget([
@@ -25,25 +25,30 @@ $this->params['breadcrumbs'] = [
     'filterModel' => $model,
     'columns' => [
         [
-            'attribute' => 'name',
+            'attribute' => 'title',
             'format' => 'html',
             'content' => function($model, $key, $index, $column) {
-                $result = '';
-                if (!empty($model->thumb)) {
-                    $result .= Html::img($model->thumb, ['height' => 20]) . '&nbsp;';
+                $options = ['class' => 'list-icon'];
+                if (!empty($model->image)) {
+                    Html::addCssStyle($options, 'background-image: url(' . $model->image . ');');
                 }
-                $result .= Html::encode($model->name);
-                return $result;
+                $image = Html::tag('div', '', $options);
+
+                $title = Html::tag('div', Html::encode($model->title));
+                $url = Html::tag('span', Html::encode($model->url), ['class' => 'badge badge-secondary']);
+                $caption = Html::tag('div', $title . $url);
+
+                return $image . $caption;
             },
         ],
         [
-            'attribute' => 'url',
+            'attribute' => 'link',
             'format' => 'html',
             'content' => function($model, $key, $index, $column) {
-                if (empty($model->url)) {
+                if (empty($model->link)) {
                     return null;
                 }
-                return Html::a($model->url);
+                return Html::a($model->link);
             },
         ],
         [

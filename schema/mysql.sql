@@ -14,15 +14,15 @@ create table if not exists `catalog_currency`
 create table if not exists `catalog_vendor`
 (
     `id` int(10) not null auto_increment,
-    `alias` varchar(100) not null,
-    `name` varchar(100) not null,
+    `user_id` int(10) default null,
+    `title` varchar(100) not null,
+    `url` varchar(200) not null,
+    `image` varchar(200) default null,
     `description` text,
-    `url` varchar(200) default null,
-    `file` varchar(200) default null,
-    `thumb` varchar(200) default null,
+    `link` varchar(200) default null,
     primary key (`id`),
-    key `alias` (`alias`),
-    key `name` (`name`)
+    key `url` (`url`),
+    key `title` (`title`)
 ) engine InnoDB;
 
 create table if not exists `catalog_category`

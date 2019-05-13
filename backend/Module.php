@@ -9,15 +9,15 @@ use smart\catalog\models\Category;
 
 class Module extends BackendModule
 {
+    /**
+     * @var integer|null
+     */
+    public $maxCategoryDepth = null;
 
     /**
-     * @var integer
+     * @var boolean
      */
-    public $vendorThumbWidth = 100;
-    /**
-     * @var integer
-     */
-    public $vendorThumbHeight = 100;
+    public $propertiesEnabled = true;
 
     /**
      * @inheritdoc
@@ -83,5 +83,4 @@ class Module extends BackendModule
             ],
         ];
     }
-
 }

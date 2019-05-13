@@ -5,14 +5,19 @@ namespace smart\catalog\backend\forms;
 use Yii;
 use dkhlystov\helpers\Translit;
 use smart\base\Form;
+use smart\catalog\models\Vendor;
 
 class VendorForm extends Form
 {
+    /**
+     * @var string Title
+     */
+    public $title;
 
     /**
-     * @var string Name
+     * @var string
      */
-    public $name;
+    public $url;
 
     /**
      * @var string Description
@@ -20,19 +25,19 @@ class VendorForm extends Form
     public $description;
 
     /**
-     * @var string Url
+     * @var string Link
      */
-    public $url;
+    public $link;
 
     /**
      * @var string Image
      */
-    public $file;
+    public $image;
 
     /**
-     * @var string Thumb
+     * @var integer
      */
-    public $thumb;
+    private $_id;
 
     /**
      * @inheritdoc
@@ -40,10 +45,11 @@ class VendorForm extends Form
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('catalog', 'Name'),
+            'title' => Yii::t('catalog', 'Title'),
+            'url' => Yii::t('catalog', 'Friendly URL'),
             'description' => Yii::t('catalog', 'Description'),
-            'url' => Yii::t('catalog', 'Url'),
-            'file' => Yii::t('catalog', 'Image'),
+            'link' => Yii::t('catalog', 'Link'),
+            'image' => Yii::t('catalog', 'Image'),
         ];
     }
 
@@ -53,24 +59,32 @@ class VendorForm extends Form
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['name', 'string', 'max' => 100],
-            ['description', 'string', 'max' => 3000],
+            ['title', 'string', 'max' => 100],
             ['url', 'string', 'max' => 200],
-            [['file', 'thumb'], 'string'],
-            ['name', 'required'],
+            ['url', 'match', 'pattern' => '/^[a-z0-9\-_]*$/'],
+            ['url', 'unique', 'targetClass' => Vendor::className(), 'when' => function ($model, $attribute) {
+                $object = Vendor::findOne($this->_id);
+                return $object === null || $object->url != $this->url;
+            }],
+            ['description', 'string', 'max' => 3000],
+            ['link', 'string', 'max' => 200],
+            ['image', 'string'],
+            [['title', 'url'], 'required'],
         ]);
     }
 
     /**
      * @inheritdoc
      */
-    public function assign($object)
+    public function assignFrom($object)
     {
-        $this->name = $object->name;
-        $this->description = $object->description;
-        $this->url = $object->url;
-        $this->file = $object->file;
-        $this->thumb = $object->thumb;
+        $this->title = self::fromString($object->title);
+        $this->url = self::fromString($object->url);
+        $this->description = self::fromString($object->description);
+        $this->link = self::fromString($object->link);
+        $this->image = self::fromString($object->image);
+
+        $this->_id = $object->id;
 
         Yii::$app->storage->cacheObject($object);
     }
@@ -80,14 +94,12 @@ class VendorForm extends Form
      */
     public function assignTo($object)
     {
-        $object->name = $this->name;
-        $object->description = $this->description;
-        $object->url = $this->url;
-        $object->file = $this->file;
-        $object->thumb = $this->thumb;
-        $object->alias = Translit::t($object->name);
+        $object->title = self::toString($this->title);
+        $object->url =self::toString($this->url);
+        $object->description = self::toString($this->description);
+        $object->link = self::toString($this->link);
+        $object->image = self::toString($this->image);
 
         Yii::$app->storage->storeObject($object);
     }
-
 }

@@ -5,9 +5,9 @@ namespace smart\catalog\backend\filters;
 use Yii;
 use yii\data\ActiveDataProvider;
 use smart\base\FilterInterface;
-use smart\catalog\models\Vendor;
+use smart\catalog\models\Category;
 
-class VendorFilter extends Vendor implements FilterInterface
+class CategoryFilter extends Category implements FilterInterface
 {
 
     /**
@@ -17,17 +17,6 @@ class VendorFilter extends Vendor implements FilterInterface
     {
         return [
             'title' => Yii::t('catalog', 'Title'),
-            'url' => Yii::t('catalog', 'Url'),
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            ['title', 'string'],
         ];
     }
 
@@ -37,7 +26,6 @@ class VendorFilter extends Vendor implements FilterInterface
     public function getDataProvider($config = [])
     {
         $query = self::find();
-        $query->andFilterWhere(['like', 'title', $this->title]);
 
         $config['query'] = $query;
         return new ActiveDataProvider($config);

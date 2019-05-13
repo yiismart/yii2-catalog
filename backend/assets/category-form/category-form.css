@@ -1,0 +1,28 @@
+.search-column {
+    vertical-align: middle!important;
+}
+.search-column > label {
+    margin: 0;
+}
+
+
+.modal-properties table {
+	margin: 0;
+}
+.modal-properties .table-condensed > tbody > tr > td {
+	padding: 0;
+}
+.modal-properties td .form-control {
+	border: none;
+	box-shadow: none;
+}
+.modal-properties td:last-child {
+	vertical-align: middle;
+	text-align: center;
+}
+
+
+.modal-properties .btn-modal-ok,
+.modal-properties .btn-modal-cancel {
+    min-width: 100px;
+}

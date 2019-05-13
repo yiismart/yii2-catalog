@@ -1,42 +1,30 @@
 <?php
 
-use yii\bootstrap4\ActiveForm;
+use smart\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use dkhlystov\uploadimage\widgets\UploadImage;
+use smart\catalog\backend\assets\VendorAsset;
 
-//thumb size
-$module = Yii::$app->controller->module;
-$thumbWidth = $module->vendorThumbWidth;
-$thumbHeight = $module->vendorThumbHeight;
-
-//label suffix
-$imageSize = ' <span class="badge badge-secondary">' . $thumbWidth . '&times' . $thumbHeight . '</span>';
-
-//widget size
-$width = $thumbWidth;
-if ($width < 20) $width = 20;
-if ($width > 282) $width = 282;
-$height = $thumbHeight / $thumbWidth * $width;
-if ($height < 20) $height = 20;
+VendorAsset::register($this);
 
 ?>
-<?php $form = ActiveForm::begin([
-    'enableClientValidation' => false,
-]); ?>
+<?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'image')->widget(UploadImage::className()) ?>
+
+    <?= $form->field($model, 'title') ?>
+
+    <?= $form->field($model, 'url', ['append' => [
+        ['button' => '<i class="fas fa-sync"></i>', 'options' => ['id' => 'make-url', 'data-url' => Url::toRoute(['make-url'])]],
+    ]]) ?>
+
     <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
-    <?= $form->field($model, 'url') ?>
-    <?= $form->field($model, 'file')->label($model->getAttributeLabel('file') . $imageSize)->widget(UploadImage::className(), [
-        'thumbAttribute' => 'thumb',
-        'thumbWidth' => $thumbWidth,
-        'thumbHeight' => $thumbHeight,
-        'width' => $width,
-        'height' => $height,
-    ]) ?>
+
+    <?= $form->field($model, 'link') ?>
 
     <div class="form-group form-buttons row">
-        <div class="col-sm-12">
+        <div class="col-sm-10 offset-sm-2">
             <?= Html::submitButton(Yii::t('cms', 'Save'), ['class' => 'btn btn-primary']) ?>
             <?= Html::a(Yii::t('cms', 'Cancel'), ['index'], ['class' => 'btn btn-secondary']) ?>
         </div>
