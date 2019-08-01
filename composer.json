@@ -13,6 +13,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "yiismart/yii2-base": "*",
+        "yiismart/yii2-city": "*",
         "creocoder/yii2-nested-sets": "0.9.*",
         "dkhlystov/yii2-translit": "^1.0",
         "dkhlystov/yii2-uploadimage": "*"
