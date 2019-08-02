@@ -23,4 +23,9 @@ class Customer extends ActiveRecord
     {
         return $this->hasOne(PriceType::className(), ['id' => 'price_type_id']);
     }
+
+    public function getAddresses()
+    {
+        return $this->hasMany(Address::className(), ['customer_id' => 'id']);
+    }
 }
