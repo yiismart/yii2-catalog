@@ -5,24 +5,24 @@ use smart\db\ActiveRecord;
 
 class Order extends ActiveRecord
 {
-    const STATE_NEW = 0;
-    const STATE_VERIFICATION = 1;
-    const STATE_PAYMENT = 2;
-    const STATE_SHIPPING = 3;
-    const STATE_DELIVERY = 4;
-    const STATE_COMPLETE = 5;
-    const STATE_REFUND = 6;
-    const SATTE_CANCELED = 7;
+    const NEW = 0;
+    const VERIFICATION = 1;
+    const PAYMENT = 2;
+    const PROCESSING = 3;
+    const SHIPPING = 4;
+    const DELIVERY = 5;
+    const COMPLETE = 6;
+    const CANCELED = 7;
 
-    private static $_stateNames = [
-        self::STATE_NEW => 'New',
-        self::STATE_VERIFICATION => 'Verification',
-        self::STATE_PAYMENT => 'Payment',
-        self::STATE_SHIPPING => 'Shipping',
-        self::STATE_DELIVERY => 'Delivery',
-        self::STATE_COMPLETE => 'Complete',
-        self::STATE_REFUND => 'Refund',
-        self::SATTE_CANCELED => 'Canceled',
+    private static $stateNames = [
+        self::NEW => 'New',
+        self::VERIFICATION => 'Verification',
+        self::PAYMENT => 'Payment',
+        self::PROCESSING => 'Processing',
+        self::SHIPPING => 'Shipping',
+        self::DELIVERY => 'Delivery',
+        self::COMPLETE => 'Complete',
+        self::CANCELED => 'Canceled',
     ];
 
     /**
