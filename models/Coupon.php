@@ -5,14 +5,18 @@ use smart\db\ActiveRecord;
 
 class Coupon extends ActiveRecord
 {
-    const TYPE_AMOUNT = 0;
-    const TYPE_PERCENT = 1;
-    const TYPE_FREE_DELIVERY = 2;
+    // Type
+    const AMOUNT = 0;
+    const PERCENT = 1;
+    const FREE_DELIVERY = 2;
 
-    private static $_typeNames = [
-        self::TYPE_AMOUNT => 'Amount',
-        self::TYPE_PERCENT => 'Percent',
-        self::TYPE_FREE_DELIVERY => 'Free delivery',
+    /**
+     * @var array
+     */
+    private static $typeNames = [
+        self::AMOUNT => 'Amount',
+        self::PERCENT => 'Percent',
+        self::FREE_DELIVERY => 'Free delivery',
     ];
 
     /**
@@ -29,7 +33,7 @@ class Coupon extends ActiveRecord
      */
     public function getCustomers()
     {
-        return $this->hasMany(CouponCustomer::className(), ['coupon_id' => 'id']);
+        return $this->hasMany(CouponCustomer::className(), ['coupon_id' => 'id'])->inverseOf('coupon');
     }
 
     /**
@@ -38,6 +42,6 @@ class Coupon extends ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(CouponProducts::className(), ['coupon_id' => 'id']);
+        return $this->hasMany(CouponProducts::className(), ['coupon_id' => 'id'])->inverseOf('coupon');
     }
 }

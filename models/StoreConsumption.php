@@ -37,6 +37,6 @@ class StoreConsumption extends ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasOne(StoreConsumptionProduct::className(), ['store_consumption_id' => 'id']);
+        return $this->hasOne(StoreConsumptionProduct::className(), ['store_consumption_id' => 'id'])->inverseOf('consumption');
     }
 }

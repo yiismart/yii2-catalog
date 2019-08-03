@@ -46,7 +46,7 @@ class Product extends ActiveRecord
      */
     public function getAvailability()
     {
-        return $this->hasMany(ProductAvailability::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductAvailability::className(), ['product_id' => 'id'])->inverseOf('product');
     }
 
     /**
@@ -55,7 +55,7 @@ class Product extends ActiveRecord
      */
     public function getImages()
     {
-        return $this->hasMany(ProductImage::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductImage::className(), ['product_id' => 'id'])->inverseOf('product');
     }
 
     /**
@@ -64,7 +64,7 @@ class Product extends ActiveRecord
      */
     public function getMeasureUnits()
     {
-        return $this->hasMany(ProductMeasureUnit::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductMeasureUnit::className(), ['product_id' => 'id'])->inverseOf('product');
     }
 
     /**
@@ -73,7 +73,7 @@ class Product extends ActiveRecord
      */
     public function getPrices()
     {
-        return $this->hasMany(ProductPrice::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductPrice::className(), ['product_id' => 'id'])->inverseOf('product');
     }
 
     /**
@@ -82,6 +82,6 @@ class Product extends ActiveRecord
      */
     public function getProperties()
     {
-        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id'])->inverseOf('product');
     }
 }

@@ -14,20 +14,11 @@ class Discount extends ActiveRecord
     }
 
     /**
-     * Available customers relation
-     * @return yii\db\ActiveQueryInterface
-     */
-    public function getCustomers()
-    {
-        return $this->hasMany(DiscountCustomer::className(), ['discount_id' => 'id']);
-    }
-
-    /**
      * Available products relation
      * @return yii\db\ActiveQueryInterface
      */
     public function getProducts()
     {
-        return $this->hasMany(DiscountProducts::className(), ['discount_id' => 'id']);
+        return $this->hasMany(DiscountProducts::className(), ['discount_id' => 'id'])->inverseOf('discount');
     }
 }

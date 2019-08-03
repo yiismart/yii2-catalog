@@ -28,7 +28,7 @@ class Return extends ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(ReturnProduct::className(), ['return_id' => 'id']);
+        return $this->hasMany(ReturnProduct::className(), ['return_id' => 'id'])->inverseOf('return');
     }
 
     /**
@@ -37,6 +37,6 @@ class Return extends ActiveRecord
      */
     public function getRefunds()
     {
-        return $this->hasMany(Refund::className(), ['return_id' => 'id']);
+        return $this->hasMany(Refund::className(), ['return_id' => 'id'])->inverseOf('return');
     }
 }

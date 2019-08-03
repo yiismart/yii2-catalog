@@ -26,6 +26,10 @@ class PriceType extends ActiveRecord
         ], $config));
     }
 
+    /**
+     * Currency relation
+     * @return yii\db\ActiveQueryInterface
+     */
     public function getCurrency()
     {
         return $this->hasOne(Currency::className(), ['id' => 'currency_id']);

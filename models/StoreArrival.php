@@ -37,6 +37,6 @@ class StoreArrival extends ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasOne(StoreArrivalProduct::className(), ['store_arrival_id' => 'id']);
+        return $this->hasOne(StoreArrivalProduct::className(), ['store_arrival_id' => 'id'])->inverseOf('arrival');
     }
 }

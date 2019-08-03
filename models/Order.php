@@ -5,6 +5,7 @@ use smart\db\ActiveRecord;
 
 class Order extends ActiveRecord
 {
+    // State
     const NEW = 0;
     const VERIFICATION = 1;
     const PAYMENT = 2;
@@ -14,6 +15,9 @@ class Order extends ActiveRecord
     const COMPLETE = 6;
     const CANCELED = 7;
 
+    /**
+     * @var array
+     */
     private static $stateNames = [
         self::NEW => 'New',
         self::VERIFICATION => 'Verification',
@@ -75,7 +79,7 @@ class Order extends ActiveRecord
      */
     public function getDelivery()
     {
-        return $this->hasOne(OrderDelivery::className(), ['order_id' => 'id']);
+        return $this->hasOne(OrderDelivery::className(), ['order_id' => 'id'])->inverseOf('order');
     }
 
     /**
@@ -84,7 +88,7 @@ class Order extends ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(OrderProduct::className(), ['order_id' => 'id']);
+        return $this->hasMany(OrderProduct::className(), ['order_id' => 'id'])->inverseOf('order');
     }
 
     /**
@@ -93,7 +97,7 @@ class Order extends ActiveRecord
      */
     public function getPayments()
     {
-        return $this->hasMany(Payment::className(), ['order_id' => 'id']);
+        return $this->hasMany(Payment::className(), ['order_id' => 'id'])->inverseOf('order');
     }
 
     /**
@@ -102,7 +106,7 @@ class Order extends ActiveRecord
      */
     public function getReturns()
     {
-        return $this->hasMany(Return::className(), ['order_id' => 'id']);
+        return $this->hasMany(Return::className(), ['order_id' => 'id'])->inverseOf('order');
     }
 
     /**
@@ -111,6 +115,6 @@ class Order extends ActiveRecord
      */
     public function getRefunds()
     {
-        return $this->hasMany(Refund::className(), ['order_id' => 'id']);
+        return $this->hasMany(Refund::className(), ['order_id' => 'id'])->inverseOf('order');
     }
 }

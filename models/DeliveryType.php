@@ -5,14 +5,18 @@ use smart\db\ActiveRecord;
 
 class DeliveryType extends ActiveRecord
 {
-    const TYPE_PICKUP = 0;
-    const TYPE_COURIER = 1;
-    const TYPE_CARRIER = 2;
+    // Type
+    const PICKUP = 0;
+    const COURIER = 1;
+    const CARRIER = 2;
 
-    private static $_typeNames = [
-        TYPE_PICKUP => 'Pickup',
-        TYPE_COURIER => 'Courier',
-        TYPE_CARRIER => 'Carrier',
+    /**
+     * @var array
+     */
+    private static $typeNames = [
+        PICKUP => 'Pickup',
+        COURIER => 'Courier',
+        CARRIER => 'Carrier',
     ];
 
     /**

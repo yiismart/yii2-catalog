@@ -14,7 +14,7 @@ class ProductAvailability extends ActiveRecord
     /**
      * @var array
      */
-    private static $_availabilityNames = [
+    private static $availabilityNames = [
         self::INSTOCK => 'In stock',
         self::UNDERTHEORDER => 'Under the order',
         self::NOTAVAILABLE => 'Not available',

@@ -20,6 +20,24 @@ class Category extends ActiveRecord
     }
 
     /**
+     * Property groups relation
+     * @return yii\db\ActiveQueryInterface
+     */
+    public function getPropertyGroups()
+    {
+        return $this->hasMany(PropertyGroup::className(), ['category_id' => 'id'])->inverseOf('category');
+    }
+
+    /**
+     * Properties relation
+     * @return yii\db\ActiveQueryInterface
+     */
+    public function getProperties()
+    {
+        return $this->hasMany(Property::className(), ['category_id' => 'id'])->inverseOf('category');
+    }
+
+    /**
      * @inheritdoc
      * Default values
      */

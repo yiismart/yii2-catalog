@@ -28,6 +28,6 @@ class PropertyGroup extends ActiveRecord
      */
     public function getProperties()
     {
-        return $this->hasOne(Property::className(), ['property_group_id' => 'id']);
+        return $this->hasOne(Property::className(), ['property_group_id' => 'id'])->inverseOf('group');
     }
 }

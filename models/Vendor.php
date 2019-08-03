@@ -1,13 +1,10 @@
 <?php
-
 namespace smart\catalog\models;
 
-use yii\db\ActiveRecord;
-use smart\storage\components\StoredInterface;
+use smart\db\ActiveRecord;
 
-class Vendor extends ActiveRecord implements StoredInterface
+class Vendor extends ActiveRecord
 {
-
     /**
      * @inheritdoc
      */
@@ -17,45 +14,11 @@ class Vendor extends ActiveRecord implements StoredInterface
     }
 
     /**
-     * Return files from attributes
-     * @param array $attributes 
-     * @return array
+     * Products relation
+     * @return yii\db\ActiveQueryInterface
      */
-    private function getFilesFromAttributes($attributes)
+    public function getProducts()
     {
-        $files = [];
-
-        if (!empty($attributes['image'])) {
-            $files[] = $attributes['image'];
-        }
-
-        return $files;
+        return $this->hasMany(Product::className(), ['vendor_id' => 'id'])->inverseOf('vendor');
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function getOldFiles()
-    {
-        return $this->getFilesFromAttributes($this->getOldAttributes());
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getFiles()
-    {
-        return $this->getFilesFromAttributes($this->getAttributes());
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setFiles($files)
-    {
-        if (array_key_exists($this->image, $files)) {
-            $this->image = $files[$this->image];
-        }
-    }
-
 }

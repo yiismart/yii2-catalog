@@ -37,6 +37,6 @@ class StoreReserve extends ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasOne(StoreReserveProduct::className(), ['store_reserve_id' => 'id']);
+        return $this->hasOne(StoreReserveProduct::className(), ['store_reserve_id' => 'id'])->inverseOf('reserve');
     }
 }

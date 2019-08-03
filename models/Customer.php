@@ -6,12 +6,16 @@ use smart\user\models\User;
 
 class Customer extends ActiveRecord
 {
-    const TYPE_PRIVATE = 0;
-    const TYPE_LEGAL = 1;
+    // Type
+    const PRIVATE = 0;
+    const LEGAL = 1;
 
-    private static $_typeNames = [
-        TYPE_PRIVATE => 'Private person',
-        TYPE_LEGAL => 'Legal entity',
+    /**
+     * @var array
+     */
+    private static $typeNames = [
+        PRIVATE => 'Private person',
+        LEGAL => 'Legal entity',
     ];
 
     /**
@@ -37,7 +41,7 @@ class Customer extends ActiveRecord
      */
     public function getPriceType()
     {
-        return $this->hasOne(PriceType::className(), ['id' => 'price_type_id']);
+        return $this->hasOne(PriceType::className(), ['id' => 'price_id']);
     }
 
     /**
@@ -46,6 +50,6 @@ class Customer extends ActiveRecord
      */
     public function getAddresses()
     {
-        return $this->hasMany(Address::className(), ['customer_id' => 'id']);
+        return $this->hasMany(Address::className(), ['customer_id' => 'id'])->inverseOf('customer');
     }
 }
