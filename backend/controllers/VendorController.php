@@ -3,9 +3,7 @@
 namespace smart\catalog\backend\controllers;
 
 use Yii;
-use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
-use dkhlystov\helpers\Translit;
 use smart\base\BackendController;
 use smart\catalog\backend\filters\VendorFilter;
 use smart\catalog\backend\forms\VendorForm;
@@ -96,15 +94,5 @@ class VendorController extends BackendController
         }
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Make friendly URL
-     * @param string $title
-     * @return string
-     */
-    public function actionMakeUrl($title)
-    {
-        return Json::encode(Translit::t($title));
     }
 }

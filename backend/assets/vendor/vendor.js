@@ -1,15 +1,14 @@
 var vendor = {
     init: function() {
-        $('#make-url').on('click', this.make_url);
+        $('#make-alias').on('click', this.make_alias);
     },
-    make_url: function() {
-        var $button = $(this), $input = $('#vendorform-url');
+    make_alias: function() {
+        var $button = $(this), $input = $('#vendorform-alias');
         if ($input.hasClass('state-loading')) {
             return;
         }
         $input.addClass('state-loading');
-        console.log($button.data('url'));
-        $.get($button.data('url'), {title: $('#vendorform-title').val()}, function(data) {
+        $.get($button.data('url'), {s: $('#vendorform-title').val()}, function(data) {
             $input.val(data).removeClass('state-loading');
         }, 'json');
     }

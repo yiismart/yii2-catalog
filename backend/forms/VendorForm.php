@@ -3,7 +3,6 @@
 namespace smart\catalog\backend\forms;
 
 use Yii;
-use dkhlystov\helpers\Translit;
 use smart\base\Form;
 use smart\catalog\models\Vendor;
 
@@ -17,7 +16,7 @@ class VendorForm extends Form
     /**
      * @var string
      */
-    public $url;
+    public $alias;
 
     /**
      * @var string Description
@@ -46,7 +45,7 @@ class VendorForm extends Form
     {
         return [
             'title' => Yii::t('catalog', 'Title'),
-            'url' => Yii::t('catalog', 'Friendly URL'),
+            'alias' => Yii::t('catalog', 'Friendly URL'),
             'description' => Yii::t('catalog', 'Description'),
             'link' => Yii::t('catalog', 'Link URL'),
             'image' => Yii::t('catalog', 'Image'),
@@ -60,46 +59,36 @@ class VendorForm extends Form
     {
         return array_merge(parent::rules(), [
             ['title', 'string', 'max' => 100],
-            ['url', 'string', 'max' => 200],
-            ['url', 'match', 'pattern' => '/^[a-z0-9\-_]*$/'],
-            ['url', 'unique', 'targetClass' => Vendor::className(), 'when' => function ($model, $attribute) {
+            ['alias', 'string', 'max' => 200],
+            ['alias', 'match', 'pattern' => '/^[a-z0-9\-_]*$/'],
+            ['alias', 'unique', 'targetClass' => Vendor::className(), 'when' => function ($model, $attribute) {
                 $object = Vendor::findOne($this->_id);
-                return $object === null || $object->url != $this->url;
+                return $object === null || $object->alias != $this->alias;
             }],
             ['description', 'string', 'max' => 3000],
             ['link', 'string', 'max' => 200],
             ['image', 'string'],
-            [['title', 'url'], 'required'],
+            [['title', 'alias'], 'required'],
         ]);
     }
 
     /**
      * @inheritdoc
      */
-    public function assignFrom($object)
+    public function map()
     {
-        $this->title = self::fromString($object->title);
-        $this->url = self::fromString($object->url);
-        $this->description = self::fromString($object->description);
-        $this->link = self::fromString($object->link);
-        $this->image = self::fromString($object->image);
-
-        $this->_id = $object->id;
-
-        Yii::$app->storage->cacheObject($object);
+        return [
+            [['title', 'alias', 'description', 'link', 'image'], 'string'],
+        ];
     }
 
     /**
      * @inheritdoc
      */
-    public function assignTo($object)
+    public function assignFrom($object, $attributeNames = null)
     {
-        $object->title = self::toString($this->title);
-        $object->url =self::toString($this->url);
-        $object->description = self::toString($this->description);
-        $object->link = self::toString($this->link);
-        $object->image = self::toString($this->image);
+        parent::assignFrom($object, $attributeNames);
 
-        Yii::$app->storage->storeObject($object);
+        $this->_id = $object->id;
     }
 }
