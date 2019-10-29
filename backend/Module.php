@@ -83,7 +83,7 @@ class Module extends BackendModule
             'label' => '<i class="fas fa-shopping-cart"></i> ' . Html::encode(Yii::t('catalog', 'Catalog')),
             'encode' => false,
             'items' => [
-                // ['label' => Yii::t('catalog', 'Currencies'), 'url' => ['/catalog/currency/index']],
+                ['label' => Yii::t('catalog', 'Currencies'), 'url' => ['/catalog/currency/index']],
                 ['label' => Yii::t('catalog', 'Vendors'), 'url' => ['/catalog/vendor/index']],
                 // ['label' => Yii::t('catalog', 'Categories'), 'url' => ['/catalog/category/index']],
                 // ['label' => Yii::t('catalog', 'Products'), 'url' => ['/catalog/product/index']],

@@ -7,7 +7,6 @@ use smart\base\Form;
 
 class CurrencyForm extends Form
 {
-
     /**
      * @var string
      */
@@ -77,29 +76,13 @@ class CurrencyForm extends Form
     /**
      * @inheritdoc
      */
-    public function assignFrom($object)
+    public function map()
     {
-        $this->name = self::fromString($object->name);
-        $this->code = self::fromString($object->code);
-        $this->rate = self::fromDouble($object->rate);
-        $this->precision = self::fromInteger($object->precision);
-        $this->prefix = self::fromString($object->prefix);
-        $this->suffix = self::fromString($object->suffix);
-        $this->default = self::fromBoolean($object->default);
+        return [
+            [['name', 'code', 'prefix', 'suffix'], 'string', 'allowNull' => false],
+            ['rate', 'double'],
+            ['precision', 'integer'],
+            ['default', 'boolean'],
+        ];
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function assignTo($object)
-    {
-        $object->name = self::toString($this->name);
-        $object->code = self::toString($this->code);
-        $object->rate = self::toDouble($this->rate);
-        $object->precision = self::toInteger($this->precision);
-        $object->prefix = self::toString($this->prefix);
-        $object->suffix = self::toString($this->suffix);
-        $object->default = self::toBoolean($this->default);
-    }
-
 }
