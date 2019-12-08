@@ -7,7 +7,6 @@ use yii\db\Expression;
 
 class Currency extends ActiveRecord
 {
-
     /**
      * @inheritdoc
      */
@@ -43,5 +42,4 @@ class Currency extends ActiveRecord
             $this->updateAll(['default' => false], ['<>', 'id', $this->id]);
         }
     }
-
 }
