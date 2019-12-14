@@ -25,7 +25,7 @@ $this->params['breadcrumbs'] = [
     'filterModel' => $model,
     'columns' => [
         [
-            'attribute' => 'title',
+            'attribute' => 'name',
             'format' => 'html',
             'content' => function($model, $key, $index, $column) {
                 $options = ['class' => 'list-icon'];
@@ -34,9 +34,9 @@ $this->params['breadcrumbs'] = [
                 }
                 $image = Html::tag('div', '', $options);
 
-                $title = Html::tag('div', Html::encode($model->title));
+                $name = Html::tag('div', Html::encode($model->name));
                 $alias = Html::tag('span', Html::encode($model->alias), ['class' => 'badge badge-secondary']);
-                $caption = Html::tag('div', $title . $alias);
+                $caption = Html::tag('div', $name . $alias);
 
                 return $image . $caption;
             },

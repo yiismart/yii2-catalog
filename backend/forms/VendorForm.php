@@ -11,7 +11,7 @@ class VendorForm extends Form
     /**
      * @var string Title
      */
-    public $title;
+    public $name;
 
     /**
      * @var string
@@ -44,7 +44,7 @@ class VendorForm extends Form
     public function attributeLabels()
     {
         return [
-            'title' => Yii::t('catalog', 'Title'),
+            'name' => Yii::t('catalog', 'Name'),
             'alias' => Yii::t('catalog', 'Friendly URL'),
             'description' => Yii::t('catalog', 'Description'),
             'link' => Yii::t('catalog', 'Link URL'),
@@ -58,7 +58,7 @@ class VendorForm extends Form
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['title', 'string', 'max' => 100],
+            ['name', 'string', 'max' => 100],
             ['alias', 'string', 'max' => 200],
             ['alias', 'match', 'pattern' => '/^[a-z0-9\-_]*$/'],
             ['alias', 'unique', 'targetClass' => Vendor::className(), 'when' => function ($model, $attribute) {
@@ -68,7 +68,7 @@ class VendorForm extends Form
             ['description', 'string', 'max' => 3000],
             ['link', 'string', 'max' => 200],
             ['image', 'string'],
-            [['title', 'alias'], 'required'],
+            [['name', 'alias'], 'required'],
         ]);
     }
 
@@ -78,7 +78,7 @@ class VendorForm extends Form
     public function map()
     {
         return [
-            [['title', 'alias', 'description', 'link', 'image'], 'string'],
+            [['name', 'alias', 'description', 'link', 'image'], 'string'],
         ];
     }
 

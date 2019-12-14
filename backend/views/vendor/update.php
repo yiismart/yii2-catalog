@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 // Title
-$title = $object->title;
+$title = $object->name;
 $this->title = $title . ' | ' . Yii::$app->name;
 
 // Breadcrumbs

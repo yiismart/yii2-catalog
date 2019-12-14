@@ -15,7 +15,7 @@ class VendorFilter extends Vendor implements FilterInterface
     public function attributeLabels()
     {
         return [
-            'title' => Yii::t('catalog', 'Title'),
+            'name' => Yii::t('catalog', 'Name'),
             'link' => Yii::t('catalog', 'Link URL'),
         ];
     }
@@ -26,7 +26,7 @@ class VendorFilter extends Vendor implements FilterInterface
     public function rules()
     {
         return [
-            ['title', 'string'],
+            ['name', 'string'],
         ];
     }
 
@@ -36,7 +36,7 @@ class VendorFilter extends Vendor implements FilterInterface
     public function getDataProvider($config = [])
     {
         $query = self::find();
-        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         $config['query'] = $query;
         return new ActiveDataProvider($config);
