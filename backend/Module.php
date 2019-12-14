@@ -84,7 +84,7 @@ class Module extends BackendModule
             'encode' => false,
             'items' => [
                 ['label' => Yii::t('catalog', 'Currencies'), 'url' => ['/catalog/currency/index']],
-                ['label' => Yii::t('catalog', 'Price Types'), 'url' => ['/catalog/price-type/index']],
+                ['label' => Yii::t('catalog', 'Price types'), 'url' => ['/catalog/price-type/index']],
                 ['label' => Yii::t('catalog', 'Vendors'), 'url' => ['/catalog/vendor/index']],
                 // ['label' => Yii::t('catalog', 'Categories'), 'url' => ['/catalog/category/index']],
                 // ['label' => Yii::t('catalog', 'Products'), 'url' => ['/catalog/product/index']],
@@ -100,13 +100,13 @@ class Module extends BackendModule
         //     ],
         // ];
 
-        // $items['catalog-order'] = [
-        //     'label' => '<i class="fas fa-file-invoice-dollar"></i> ' . Html::encode(Yii::t('catalog', 'Orders')),
-        //     'encode' => false,
-        //     'items' => [
-        //         ['label' => Yii::t('catalog', 'Delivery methods'), 'url' => ['/catalog/delivery/index']],
-        //         ['label' => Yii::t('catalog', 'Orders'), 'url' => ['/catalog/order/index']],
-        //     ],
-        // ];
+        $items['catalog-order'] = [
+            'label' => '<i class="fas fa-file-invoice-dollar"></i> ' . Html::encode(Yii::t('catalog', 'Orders')),
+            'encode' => false,
+            'items' => [
+                ['label' => Yii::t('catalog', 'Carriers'), 'url' => ['/catalog/carrier/index']],
+                // ['label' => Yii::t('catalog', 'Orders'), 'url' => ['/catalog/order/index']],
+            ],
+        ];
     }
 }

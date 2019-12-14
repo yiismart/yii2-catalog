@@ -8,8 +8,17 @@ create table if not exists `catalog_currency`
     `prefix` varchar(10) not null,
     `suffix` varchar(10) not null,
     `default` tinyint(1) default 0,
-    primary key (`id`)б
+    primary key (`id`),
     key `alias` (`default`)
+) engine InnoDB;
+
+create table if not exists `catalog_carrier`
+(
+    `id` int(10) not null auto_increment,
+    `name` varchar(100) not null,
+    `image` varchar(200) default null,
+    `description` text,
+    primary key (`id`)
 ) engine InnoDB;
 
 create table if not exists `catalog_price_type`
@@ -27,12 +36,12 @@ create table if not exists `catalog_vendor`
 (
     `id` int(10) not null auto_increment,
     `user_id` int(10) default null,
-    `title` varchar(100) not null,
+    `name` varchar(100) not null,
     `alias` varchar(200) not null,
     `image` varchar(200) default null,
     `description` text,
     `link` varchar(200) default null,
     primary key (`id`),
     key `alias` (`alias`),
-    key `title` (`title`)
+    key `name` (`name`)
 ) engine InnoDB;

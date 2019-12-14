@@ -3,7 +3,6 @@
 use smart\widgets\ActiveForm;
 use yii\helpers\Html;
 use dkhlystov\uploadimage\widgets\UploadImage;
-use smart\widgets\Translit;
 
 ?>
 <?php $form = ActiveForm::begin(); ?>
@@ -12,11 +11,7 @@ use smart\widgets\Translit;
 
     <?= $form->field($model, 'name'); ?>
 
-    <?= $form->field($model, 'alias')->widget(Translit::className(), ['source' => 'name']); ?>
-
     <?= $form->field($model, 'description')->textarea(['rows' => 5]); ?>
-
-    <?= $form->field($model, 'link'); ?>
 
     <div class="form-group form-buttons row">
         <div class="col-sm-10 offset-sm-2">

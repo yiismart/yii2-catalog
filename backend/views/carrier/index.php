@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use smart\grid\GridView;
 
 // Title
-$title = Yii::t('catalog', 'Vendors');
+$title = Yii::t('catalog', 'Carriers');
 $this->title = $title . ' | ' . Yii::$app->name;
 
 // Breadcrumbs
@@ -35,20 +35,9 @@ $this->params['breadcrumbs'] = [
                 $image = Html::tag('div', '', $options);
 
                 $name = Html::tag('div', Html::encode($model->name));
-                $alias = Html::tag('span', Html::encode($model->alias), ['class' => 'badge badge-secondary']);
-                $caption = Html::tag('div', $name . $alias);
+                $caption = Html::tag('div', $name);
 
                 return $image . $caption;
-            },
-        ],
-        [
-            'attribute' => 'link',
-            'format' => 'html',
-            'content' => function($model, $key, $index, $column) {
-                if (empty($model->link)) {
-                    return null;
-                }
-                return Html::a($model->link);
             },
         ],
         [
